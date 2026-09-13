@@ -1,0 +1,23 @@
+{
+  "manifest_version": 3,
+  "name": "UIT Auto SSO Login",
+  "version": "1.2",
+  "description": "Tự động đăng nhập tài khoản UIT",
+  "permissions": [
+    "storage"
+  ],
+  "action": {
+    "default_popup": "popup.html"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "https://courses.uit.edu.vn/*",
+        "https://sso.uit.edu.vn/*",
+        "https://daa.uit.edu.vn/*"
+      ],
+      "js": ["content.js"],
+      "run_at": "document_end"
+    }
+  ]
+}
