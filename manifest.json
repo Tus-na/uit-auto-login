@@ -13,6 +13,7 @@
     {
       "matches": [
         "https://courses.uit.edu.vn/*",
+        "https://portal.uit.edu.vn/*",
         "https://sso.uit.edu.vn/*",
         "https://daa.uit.edu.vn/*"
       ],

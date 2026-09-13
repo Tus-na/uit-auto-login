@@ -1,10 +1,13 @@
 function handleAutoLogin() {
   const currentUrl = window.location.href;
 
-  // 1. Tự động click nút "UIT SSO" tại trang courses.uit.edu.vn
-  if (currentUrl.includes("courses.uit.edu.vn")) {
+  // 1. Tự động click nút SSO tại trang courses.uit.edu.vn hoặc portal.uit.edu.vn
+  if (currentUrl.includes("courses.uit.edu.vn") || currentUrl.includes("portal.uit.edu.vn")) {
     const ssoBtn = Array.from(document.querySelectorAll('a, button')).find(
-      el => el.textContent.trim().toUpperCase() === "UIT SSO"
+      el => {
+        const text = el.textContent.trim().toUpperCase();
+        return text.includes("UIT SSO") || text.includes("ĐĂNG NHẬP VỚI UIT SSO");
+      }
     );
     if (ssoBtn) {
       ssoBtn.click();
@@ -15,7 +18,7 @@ function handleAutoLogin() {
   // Lấy dữ liệu tài khoản từ chrome.storage
   chrome.storage.local.get(['uit_user', 'uit_pass'], (data) => {
     const { uit_user, uit_pass } = data;
-    if (!uit_user || !uit_pass) return; // Nếu chưa lưu tài khoản thì dừng
+    if (!uit_user || !uit_pass) return;
 
     // 2. Tự động đăng nhập tại trang sso.uit.edu.vn
     if (currentUrl.includes("sso.uit.edu.vn")) {
